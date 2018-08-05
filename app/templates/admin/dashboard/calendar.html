@@ -1,0 +1,77 @@
+{% extends "admin/layout.html" %}
+{% block title %}Calendar{% endblock %}
+{% block loc %}calendar{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('.static', filename='vendor/fullcalendar.min.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='css/calendar.css')}}">
+{% endblock %}
+{% block body %}
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-3 border-right p-r-0">
+                        <div class="card-body border-bottom">
+                            <h4 class="card-title m-t-10">Malden Calendar</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur tempora error et? Totam architecto doloremque quia sunt, quod sequi optio officia dolorem quae dolorum nihil mollitia explicabo facere non minus illo repellat dolore ipsam in aliquam fugit expedita a. Reprehenderit fugiat enim praesentium in fuga unde officiis, harum molestiae vero, sapiente rerum? Tempore reiciendis quisquam architecto facere nisi magni commodi error inventore sunt ad, eius deserunt modi mollitia id, totam dolorem doloribus. Nisi quia nihil fugiat enim quibusdam earum repellat modi praesentium nemo, assumenda ab quis! Fugit excepturi nihil explicabo impedit, soluta assumenda, ratione praesentium eos animi doloremque aperiam fuga.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="card-body b-l calender-sidebar">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BEGIN MODAL -->
+<div class="modal none-border" id="my-event">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Add Event</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
+                <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal none-border" id="create-event">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Create Event</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL -->
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
+{% endblock %}
+{% block plugins %}
+    {{super()}}
+    <script src="{{url_for('.static', filename='vendor/fullcalendar.min.js')}}"></script>
+    <script src="{{url_for('.static', filename='js/calendar.js')}}"></script>
+{% endblock %}

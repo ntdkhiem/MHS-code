@@ -1,0 +1,8 @@
+Dear, {{user.first_name}}
+
+Your account was successfully created. Please paste the link below
+on the navbar to confirm your email address and activate your account:
+
+{{ confirm }}
+
+Questions? Comments? Email maldencomputerclub@gmail.com.

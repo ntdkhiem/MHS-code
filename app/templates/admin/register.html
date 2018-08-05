@@ -1,0 +1,163 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+{{super()}}
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark" >
+    <div class="auth-box bg-dark border-top border-secondary" style="max-width: none !important;">
+        <div id="registerform">
+            <div class="text-center p-t-20 p-b-20 mx-auto" style="max-width: 400px;">
+                <span class="db"><img src="{{url_for('.static', filename='img/cc-logo-text.png')}}" class="img-fluid" alt="logo" /></span>
+            </div>
+            <form class="form-horizontal m-t-20" method="POST" action="{{url_for('.register')}}">
+                {{ form.hidden_tag() }}
+                <div class="row p-b-15">
+                  <div class="col-md-6">
+                    <div class="input-group mb-3 has-error">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-user"></i></span>
+                      </div>
+                      {% if form.first_name.errors%}
+                        {{form.first_name(class_="form-control form-control-lg is-invalid", placeholder="First name", required="required")}}
+                        {% for error in form.first_name.errors %}
+                          <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                      {% else %}
+                        {{form.first_name(class_="form-control form-control-lg", placeholder="First name", required="required")}}
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group mb-3 has-error">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="fas fa-user"></i></span>
+                      </div>
+                      {% if form.last_name.errors%}
+                        {{form.last_name(class_="form-control form-control-lg is-invalid", placeholder="Last name", required="required")}}
+                        {% for error in form.last_name.errors %}
+                          <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                      {% else %}
+                        {{form.last_name(class_="form-control form-control-lg", placeholder="Last name", required="required")}}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row p-b-15">
+                  <div class="col-12">
+                    <div class="input-group mb-3 has-error p-b-15">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="mdi mdi-email"></i></span>
+                        </div>
+                        {% if form.email.errors%}
+                          {{form.email(class_="form-control form-control-lg is-invalid ", placeholder="email@example.com", required="required", type="email")}}
+                          {% for error in form.email.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                          {% endfor %}
+                        {% else %}
+                          {{form.email(class_="form-control form-control-lg  ", placeholder="email@example.com", required="required", type="email")}}
+                        {% endif %}
+                    </div>
+                    <div class="input-group mb-3 p-b-15">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                        </div>
+                        {% if form.password.errors%}
+                          {{form.confirm(class_=" form-control form-control-lg is-invalid", placeholder="***", required="required", type="password")}}
+                          {% for error in form.password.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                          {% endfor %}
+                        {% else %}
+                          {{form.password(class_=" form-control form-control-lg", placeholder="***", required="required")}}
+                        {% endif %}
+                    </div>
+                    <div class="input-group mb-3  p-b-15">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                        </div>
+                        {% if form.confirm.errors%}
+                          {{form.confirm(class_="form-control   form-control-lg is-invalid", placeholder="re-enter password", required="required", type="password")}}
+                          {% for error in form.confirm.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                          {% endfor %}
+                        {% else %}
+                          {{form.confirm(class_=" form-control form-control-lg", placeholder="re-enter password", required="required")}}
+                        {% endif %}
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="row p-b-15">
+                  <div class="col-md-3">
+                    <div class="input-group mb-3 has-error">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="mdi mdi-crown"></i></span>
+                        </div>
+                        {% if form.grade.errors%}
+                          {{form.grade(class_="form-control form-control-lg is-invalid", placeholder="grade")}}
+                          {% for error in form.grade.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                          {% endfor %}
+                        {% else %}
+                          {{form.grade(class_="form-control form-control-lg", placeholder="grade")}}
+                        {% endif %}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="input-group mb-3 has-error">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text bg-primary text-white" id="basic-addon1"><i class="mdi mdi-view-grid"></i></span>
+                          </div>
+                          {% if form.track.errors%}
+                            {{form.track(class_="form-control form-control-lg is-invalid")}}
+                            {% for error in form.track.errors %}
+                              <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                          {% else %}
+                            {{form.track(class_="form-control form-control-lg")}}
+                          {% endif %}
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="input-group mb-3 has-error">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-dark text-white" id="basic-addon1"><i class="fas fa-warehouse"></i></span>
+                        </div>
+                        {% if form.homeroom.errors%}
+                          {{form.homeroom(class_="form-control form-control-lg is-invalid", placeholder="Homeroom")}}
+                          {% for error in form.homeroom.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                          {% endfor %}
+                        {% else %}
+                          {{form.homeroom(class_="form-control form-control-lg", placeholder="Homeroom")}}
+                        {% endif %}
+                    </div>
+                  </div>
+                </div>
+                {{form.profile_image(class_="m-b-30 bg-light")}}
+
+                <div class="row border-top border-secondary">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="p-t-20">
+                                <a type="button" href="{{url_for('admin.login')}}" class="btn btn-info" type="button"><i class="fa fa-lock m-r-5"></i> Already had an account?</a>
+                                <button class="btn btn-success float-right" type="submit">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block plugins %}
+  {{super()}}
+  <script>
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+  </script>
+{% endblock %}

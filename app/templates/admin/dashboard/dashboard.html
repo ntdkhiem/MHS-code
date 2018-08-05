@@ -1,0 +1,270 @@
+{% extends "admin/layout.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block loc %}Dashboard{% endblock %}
+{% block body %} 
+  <!-- 4 boards -->
+  <div class="row">
+      <!-- Column -->
+      <div class="col-md-6 col-lg-3">
+          <div class="card card-hover">
+              <div class="box bg-cyan text-center">
+                  <h1 class="font-light text-white" id="Counter1">0</i></h1>
+                  <h6 class="text-white">Members</h6>
+              </div>
+          </div>
+      </div>
+      <!-- Column -->
+      <div class="col-md-6 col-lg-3">
+          <div class="card card-hover">
+              <div class="box bg-success text-center">
+                  <h1 class="font-light text-white" id="Counter2">0</i></h1>
+                  <h6 class="text-white">Total Blogs</h6>
+              </div>
+          </div>
+      </div>
+       <!-- Column -->
+      <div class="col-md-6 col-lg-3">
+          <div class="card card-hover">
+              <div class="box bg-warning text-center">
+                  <h1 class="font-light text-white" id="Counter3">0</i></h1>
+                  <h6 class="text-white">Profit</h6>
+              </div>
+          </div>
+      </div>
+      <!-- Column -->
+      <div class="col-md-6 col-lg-3">
+          <div class="card card-hover">
+              <div class="box bg-danger text-center">
+                  <h1 class="font-light text-white" id="Counter4">0</i></h1>
+                  <h6 class="text-white">Total Events</h6>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Analysis -->
+  <div class="row">
+      <!-- Top Category -->
+      <div class="col-lg-6">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Track's Leaderboard</h5>
+                  <canvas id="tracksLeaderboard"></canvas>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-6">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Members Level</h5>
+                  <canvas id="memberLevel"></canvas>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-12">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Students Registration</h5>
+                  <canvas id="studentsRegistration"></canvas>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- LATEST POSTS -->
+  <div class="card">
+      <div class="card-body">
+          <h4 class="card-title">Latest Posts</h4>
+      </div>
+      <div class="comment-widgets scrollable"  style="height:250px;">
+          <!-- Comment Row -->
+          <div class="d-flex flex-row comment-row m-t-0">
+              <div class="p-2"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="50" class="rounded-circle"></div>
+              <div class="comment-text w-100">
+                  <h6 class="font-medium">Kevin Nguyen</h6>
+                  <span class="m-b-15 d-block">This is a blog about cyber security that you will want to know of to protect yourself. </span>
+                  <div class="comment-footer">
+                      <span class="text-muted float-right">July 11, 2018</span> 
+                      <button type="button" class="btn btn-cyan btn-sm">Edit</button>
+                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                  </div>
+              </div>
+          </div>
+          <!-- Comment Row -->
+          <div class="d-flex flex-row comment-row">
+              <div class="p-2"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="50" class="rounded-circle"></div>
+              <div class="comment-text active w-100">
+                  <h6 class="font-medium">Jacky Luong</h6>
+                  <span class="m-b-15 d-block">This is a post about solving problems that you might want to understand and learn. </span>
+                  <div class="comment-footer">
+                      <span class="text-muted float-right">July 11, 2018</span> 
+                      <button type="button" class="btn btn-cyan btn-sm">Edit</button>
+                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                  </div>
+              </div>
+          </div>
+          <!-- Comment Row -->
+          <div class="d-flex flex-row comment-row">
+              <div class="p-2"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="50" class="rounded-circle"></div>
+              <div class="comment-text w-100">
+                  <h6 class="font-medium">Will Duggan</h6>
+                  <span class="m-b-15 d-block">Hey every visiters, there will be a giving out for every new members. Click here for more info. </span>
+                  <div class="comment-footer">
+                      <span class="text-muted float-right">July 11, 2018</span> 
+                      <button type="button" class="btn btn-cyan btn-sm">Edit</button>
+                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- EVENTS & MEMBERS & OFFICERS -->
+  <div class="row">
+      <!-- EVENTS & MEMBERS -->
+      <div class="col-lg-7 test">
+          <div id="events">
+              <div class="card" >
+                  <div class="card-body d-flex">
+                      <h5 class="card-title m-b-0 flex-grow-1">Events</h5>
+                      <button class=" btn btn-outline-primary"><i class="mdi mdi-plus mr-2"></i>New Event</button>
+                      <button class="btn btn-outline-success ml-1" id="refresh-event"><i class="mdi mdi-refresh"></i></button>
+                  </div>
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th scope="col">Description</th>
+                              <th scope="col">Track</th>
+                              <th scope="col">Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>New Problem sets coming out!!</td>
+                              <td class="text-success">Algorithms</td>
+                              <td>
+                                  <a href="#" data-toggle="tooltip" data-placement="top" title="Update">
+                                      <i class="mdi mdi-lead-pencil"></i>
+                                  </a>
+                                  <a href="#" data-toggle="tooltip" data-placement="top" title="Delete">
+                                      </i><i class="mdi mdi-close"></i>
+                                  </a>     
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>New art by <a href="#!">Valery Delva</a></td>
+                              <td class="text-warning">Graphics</td>
+                              <td>
+                                  <a href="#" data-toggle="tooltip" data-placement="top" title="Update">
+                                      <i class="mdi mdi-lead-pencil"></i>
+                                  </a>
+                                  <a href="#" data-toggle="tooltip" data-placement="top" title="Delete">
+                                      </i><i class="mdi mdi-close"></i>
+                                  </a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>Competition for nerds</td>
+                              <td class="text-danger">Hardware</td>
+                              <td>
+                                  <a href="#" data-toggle="tooltip" data-placement="top" title="Update">
+                                      <i class="mdi mdi-lead-pencil"></i>
+                                  </a>
+                                  <a href="#" data-toggle="tooltip" data-placement="top" title="Delete">
+                                      </i><i class="mdi mdi-close"></i>
+                                  </a>
+                              </td>  
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title m-b-0">Members</h5>
+              </div>
+              <table class="table table-hover scrollable" style="height: 239px">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Homeroom</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Br472</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>Br472</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>Br472</td>
+                      </tr>
+                    </tbody>
+              </table>
+          </div>
+      </div>
+      <!-- OFFICERS -->
+      <div class="col-lg-5">
+              <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title m-b-0">Officers</h5>
+              </div>
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Role</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td class="font-weight-bold"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="40" class="rounded-circle mr-2">Mohsin</td>
+                          <td>President</td>
+                      </tr>
+                      <tr>
+                          <td class="font-weight-bold"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="40" class="rounded-circle mr-2">Jacky Luong</td>
+                          <td>Vice President</td>
+                      </tr>
+                      <tr>
+                          <td class="font-weight-bold"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="40" class="rounded-circle mr-2">Will Duggan</td>
+                          <td>Vice President</td>
+                      </tr>
+                      <tr>
+                          <td class="font-weight-bold"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="40" class="rounded-circle mr-2">Jack Williams</td>
+                          <td>Manager</td>
+                      </tr>
+                      <tr>
+                          <td class="font-weight-bold"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="40" class="rounded-circle mr-2">Valery Delva</td>
+                          <td>Manager</td>
+                      </tr>
+                      <tr>
+                          <td class="font-weight-bold"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="40" class="rounded-circle mr-2">Felix</td>
+                          <td>Manager</td>
+                      </tr>
+                      <tr>
+                          <td class="font-weight-bold"><img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" width="40" class="rounded-circle mr-2">Kevin Nguyen</td>
+                          <td>Security Director</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+
+{% endblock %}
+{% block plugins %}
+ {{super()}}
+ <!-- This page js -->
+ <script src="{{ url_for('.static', filename='js/dashboard.js') }}"></script>
+ <script src="{{ url_for('.static', filename='vendor/countup.min.js') }}"></script>
+ <script src="{{ url_for('.static', filename='vendor/chart.min.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+500
+{% endblock %}
+
+{% block content %}
+    {{super()}}
+    <h1>An unexpected error has occurred</h1>
+    <p>The administrator has been notified. Sorry for the inconvenience!</p>
+{% endblock %}
+{% block content %}
+    {{super()}}
+    <script>
+      $('[data-toggle="tooltip"]').tooltip();
+      $(".preloader").fadeOut();
+    </script>
+{% endblock %}

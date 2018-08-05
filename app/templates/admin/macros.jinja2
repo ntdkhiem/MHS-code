@@ -1,0 +1,22 @@
+{% macro nav_link(endpoint, text, icon, collapsable=false) %}
+{% if collapsable %}
+    {% set navigation_link %}
+        <li class="sidebar-item "><a class="sidebar-link has-arrow waves-effect waves-dark" href="{{ url_for(endpoint) }}" aria-expanded="false"><i class="mdi {{ icon }}"></i><span class="hide-menu">{{text}}</span></a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item"><a href="{{url_for(endpoint)}}" class="sidebar-link"><i class="mdi mdi-view-array"></i><span class="hide-menu"> Dashboard </span></a></li>
+                {# <li class="sidebar-item"><a href="{{url_for(endpoint)}}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Blogs </span></a></li> #}
+                {# <li class="sidebar-item"><a href="{{url_for(endpoint)}}" class="sidebar-link"><i class="mdi mdi-ticket"></i><span class="hide-menu"> Events </span></a></li> #}
+            </ul>
+        </li>
+    {% endset %}
+{% else %}
+    {% set navigation_link %}
+    <li class="sidebar-item "><a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url_for(endpoint) }}" aria-expanded="false"><i class="mdi {{ icon }}"></i><span class="hide-menu">{{text}}</span></a></li>
+    {% endset %}
+{% endif %}
+{% if request.endpoint.endswith(endpoint) %}
+    {{navigation_link}}
+{% else %}
+    {{navigation_link}}
+{% endif %}
+{% endmacro %}
