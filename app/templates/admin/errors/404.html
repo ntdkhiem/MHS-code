@@ -1,18 +1,2 @@
-{% extends "admin/base.html" %}
-
-{% block title %}
 404
-{% endblock %}
-
-{% block content %}
-    {{super()}}
-    <h1>Not Found</h1>
-{% endblock %}
-
-{% block plugins %}
-    {{super()}}
-    <script>
-      $('[data-toggle="tooltip"]').tooltip();
-      $(".preloader").fadeOut();
-    </script>
-{% endblock %}
+from 404.html

@@ -5,8 +5,14 @@ from app import db
 from app.auth.email import send_confirm_email
 from app.admin.forms import LoginForm, RegisterForm
 from app.models import User
+from app.api.users import get_users, get_members
+from app.api.google_calendar import get_events
+from app.api.gallery import get_gallery
 from app.admin import bp
 from werkzeug.urls import url_parse
+
+import os
+import json 
 
 @bp.before_app_request
 def before_request():
@@ -38,36 +44,40 @@ def register():
         return redirect(url_for('admin.dashboard'))
     if form.validate_on_submit():
         user = User(first_name=form.first_name.data, last_name=form.last_name.data, grade=form.grade.data, track=form.track.data, homeroom=form.homeroom.data, email=form.email.data)
-        user.image = user.avatar(128)
+        user.set_image(form.profile_image.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
         flash("Success, please check your email inbox for email confirmation", "alert-success")
         send_confirm_email(user)
         return redirect(url_for('admin.login'))
-        # headers = {'content-type': 'application/json'}
-        # user = {
-        #     'first_name': form.first_name.data,
-        #     'last_name': form.last_name.data,
-        #     'grade': form.grade.data,
-        #     'track': form.track.data,
-        #     'homeroom': form.homeroom.data,
-        #     'email': form.email.data,
-        #     'password': form.password.data,
-        #     'image': form.profile_image.data
-        # }
-        # res = requests.post(url_for('api.create_user', _external=True), json=user,headers=headers)
-        # if res.status_code == 201:
-        #     send_confirm_email(user)
-        #     flash("Success, please check your email inbox for email confirmation", "alert-success")
-        #     return redirect(url_for('admin.login'))
-        # flash('Did not complete registration, please try again', 'alert-danger')
     return render_template('admin/register.html', form=form)
 
 @bp.route('/dashboard')
-@login_required
+# @login_required
 def dashboard():
-    return "<h1>Success!!</h1>"
+    officers = []
+    members = []
+    events = []
+    ctx = current_app.test_request_context('/?per_page=999')
+    ctx.push()
+    officers = json.loads(get_users().data.decode('utf-8'))
+    ctx.pop()
+    members = json.loads(get_members().data.decode('utf-8'))
+    if get_events():
+        events = json.loads(get_events().data.decode('utf-8'))
+    return render_template('admin/dashboard/dashboard.html', officers=officers, members=members, events=events)
+
+@bp.route('/gallery')
+def gallery():
+    data = []
+    if get_gallery():
+        page = request.args.get('page', 1)
+        ctx = current_app.test_request_context('/?page={}&per_page=16'.format(page))
+        ctx.push()
+        data = json.loads(get_gallery().data.decode('utf-8'))
+        ctx.pop()
+    return render_template('admin/dashboard/gallery.html', gallery=data)
 
 @bp.route('/logout')
 def logout():

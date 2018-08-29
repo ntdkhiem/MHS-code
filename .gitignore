@@ -39,3 +39,6 @@ env/
 .env
 app.db
 logs/
+client_secret.json
+credentials.json
+token.json

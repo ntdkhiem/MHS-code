@@ -31,3 +31,4 @@ class ResetPasswordRequestForm(FlaskForm):
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired(), Length(min=10,max=128), EqualTo('confirm', message="Passwords must match")])
     confirm = PasswordField('Repeat Password')
+

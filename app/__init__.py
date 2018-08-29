@@ -8,6 +8,8 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_moment import Moment
 from flask_cors import CORS 
+from flask_resize import Resize
+from flask_wtf.csrf import CSRFProtect
 
 from config import Config
 # from flask_babel import Babel, lazy_gettext as _l
@@ -25,7 +27,8 @@ login.session_protection = "strong" # When session protection is active, each re
 mail = Mail()
 cors = CORS()
 moment = Moment()
-# babel = Babel()
+resize = Resize()
+csrf = CSRFProtect()
 
 
 def create_app(config_class=Config):
@@ -37,6 +40,9 @@ def create_app(config_class=Config):
     mail.init_app(app)
     moment.init_app(app)
     cors.init_app(app, resources={r"/api/*": {"origins": "*"}})
+    csrf.init_app(app)
+    resize.init_app(app)
+    app.jinja_env.cache = {}
     # babel.init_app(app)
     # app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
     #     if app.config['ELASTICSEARCH_URL'] else None
@@ -58,6 +64,9 @@ def create_app(config_class=Config):
     from app.admin import bp as admin_bp
     app.register_blueprint(admin_bp, url_prefix='/admin')
 
+    from app.gallery import bp as gallery_bp
+    app.register_blueprint(gallery_bp, url_prefix='/content')
+   
     if not app.debug and not app.testing:
         if app.config['MAIL_SERVER']:
             auth = None
@@ -94,11 +103,6 @@ def create_app(config_class=Config):
         app.logger.info('MHS startup')
 
     return app
-
-
-# @babel.localeselector
-# def get_locale():
-#     return request.accept_languages.best_match(current_app.config['LANGUAGES'])
 
 
 from app import models

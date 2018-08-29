@@ -1,0 +1,67 @@
+{% extends "main/layout.html" %}
+{% block CSS %}
+    {{super()}}
+    <link rel="stylesheet" href="{{url_for('.static', filename='vendor/lightbox.min.css')}}">
+{% endblock %}
+{% block TITLE %}Gallery | MHS Computer Club{% endblock %}
+    {% block HEADER %}
+    {{super()}}
+    <div class="view jarallax about-header" data-jarallax='{"speed": 0.2}' style="background-image: url('{{url_for('.static', filename='img/Graphics.jpg')}}'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-4 white-text text-center wow fadeInUp">
+                        <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong>Gallery</strong></h1>
+                        <hr class="hr-light my-4  w-25 wow fadeInDown" data-wow-delay="0.4s">
+                        <h5 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>Pictures we took during activities in the club</strong></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    {% block MAIN %}
+        <main>
+            <section class="my-5">
+                <div class="container-fluid d-flex">
+                        <div id="gallery" class="row justify-content-center my-3 py-3">
+                            {% for item in data['items'] %}
+                            <div class="col-md-3 col-sm-6 col-12 mb-4">
+                                <a class="" href="{{url_for('content.main', image_url=item['url'])}}" data-lightbox="indoor" data-title="{{item['title']}}">
+                                    <div class="view overlay zoom w-100 h-100">
+                                        <img class="img-fluid img-thumbnail z-depth-1 w-100 h-100" src="{{url_for('content.main', image_url=item['url'])}}" alt="{{item['id']}}"/>
+                                        <div class="mask flex-center rgba-red-strong waves-effect waves-light">
+                                            <p class="white-text">Click for fullscreen</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                            {% if data['_links']['next'] %}
+                            <a href="#!" data-next="{{data['_links']['next']}}" id="load-more" type="button" class=" btn btn-outline-mhs-dark btn-md text-uppercase">load more</a>
+                            {% endif %}
+                        </div>
+                </div>
+            </section>
+        </main>
+    {% endblock %}
+{% block JS %}
+    {{super()}}
+    <script src="{{url_for('.static', filename='vendor/lightbox.min.js')}}"></script>
+    <script src="{{url_for('.static', filename='js/gallery.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            'use strict';
+            new WOW().init();
+            $('.animsition').animsition();
+            var csrf_token = "{{ csrf_token() }}";
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrf_token);
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

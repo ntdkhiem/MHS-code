@@ -2,6 +2,17 @@ from itsdangerous import URLSafeTimedSerializer
 from flask import render_template, current_app, url_for
 from app.email import send_email
 
+def send_contact_email(data):
+    send_email(subject='[MHS] New Message',
+                sender=current_app.config['ADMINS'][0],
+                recipients=[current_app.config['ADMINS'][0]],
+                text_body=render_template('admin/email/contact.txt',
+                                            data=data),
+                html_body=render_template('admin/email/contact.html',
+                                            data=data)
+    )
+    return 'success, thanks for your message'
+
 def send_password_reset_email(user):
     ts = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
     token = user.get_reset_password_token(ts)

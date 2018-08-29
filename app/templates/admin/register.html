@@ -12,7 +12,7 @@ Register
             <div class="text-center p-t-20 p-b-20 mx-auto" style="max-width: 400px;">
                 <span class="db"><img src="{{url_for('.static', filename='img/cc-logo-text.png')}}" class="img-fluid" alt="logo" /></span>
             </div>
-            <form class="form-horizontal m-t-20" method="POST" action="{{url_for('.register')}}">
+            <form class="form-horizontal m-t-20" method="POST" action="{{url_for('.register')}}" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
                 <div class="row p-b-15">
                   <div class="col-md-6">

@@ -1,0 +1,88 @@
+{
+    "officer": {
+        "_links": {
+            "next": "/api/users?page=2&per_page=3",
+            "prev": null,
+            "self": "/api/users?page=1&per_page=3"
+        },
+        "_meta": {
+            "page": 1,
+            "per_page": 3,
+            "total_items": 7,
+            "total_pages": 3
+        },
+        "items": [
+            {
+                "_links": {
+                    "image": "07b4e2c4d060195146354c0a4733a13da4ff0c4dc94b4be037bdd483.jpeg",
+                    "self": "/api/users/4"
+                },
+                "email": "ppnguyentanduykhiem@gmail.com",
+                "first_name": "Jacky",
+                "grade": 12,
+                "homeroom": "Br482",
+                "id": 4,
+                "join_at": "Sun, 19 Aug 2018 00:50:50 GMT",
+                "last_name": "Luong",
+                "last_seen": "2018-08-19T00:50:50.600828Z",
+                "role": "Vice President\n",
+                "track": "Computer Security"
+            }
+        ]
+    },
+    "member": [
+        {
+            "About Me": "Hey there",
+            "Email of Preference": "ppkhiemnguyen@gmail.com",
+            "Grade": "Sophomore",
+            "Name": "Kevin Nguyen",
+            "Time Stamp": "2018-08-16T13:17:58Z",
+            "Track of Interest": "Cybersecurity"
+        },
+        {
+            "About Me": "Nothing much",
+            "Email of Preference": "test@gmail.com",
+            "Grade": "Freshman",
+            "Name": "David Chau",
+            "Time Stamp": "2018-08-21T13:49:56Z",
+            "Track of Interest": "Algorithms"
+        }
+    ],
+    "gcal": [
+        {
+            "description": "",
+            "id": "3o49u62kfjt5bl92c6i5soqs23",
+            "link": "https://www.google.com/calendar/event?eid=M280OXU2MmtmanQ1Ymw5MmM2aTVzb3FzMjMgcHBraGllbW5ndXllbkBt",
+            "location": "",
+            "time": {
+                "end": "2018-08-23T17:00:00-04:00",
+                "start": "2018-08-23T12:30:00-04:00"
+            },
+            "title": "Hours of Code"
+        }
+    ],
+    "gallery": {
+        "_links": {
+            "next": "/api/gallery?page=2&per_page=4",
+            "prev": null,
+            "self": "/api/gallery?page=1&per_page=4"
+        },
+        "_meta": {
+            "page": 1,
+            "per_page": 4,
+            "total_items": 6,
+            "total_pages": 2
+        },
+        "items": [
+            {
+                "_links": {
+                    "self": "/api/gallery/3"
+                },
+                "id": 3,
+                "title": "Hours of Code",
+                "url": "image_3.jpg"
+            }
+        ]
+    }
+
+}

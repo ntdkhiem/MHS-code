@@ -3,227 +3,77 @@
 {% block loc %}gallery{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{url_for('.static', filename='vendor/magnific-popup.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='css/gallery.css')}}">
 {% endblock %}
 {% block body %}
-<button class="btn btn-outline-primary mb-5"><i class="mdi mdi-plus"></i>Add</button>
-<div class="row el-element-overlay">
+<button type="button" class="btn btn-outline-primary mb-5" data-toggle="modal" data-target="#addPic">
+    <i class="mdi mdi-plus"></i>Add
+</button>
+<div class="row el-element-overlay justify-content-center" id="gallery-container">
+    {% for picture in gallery["items"] %}
     <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
+        <button type="button" class="close p-2" style="z-index:1;" aria-label="Close" id="{{picture['id']}}">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" style="height:216px; width:288px;" src="{{url_for('content.main', image_url=picture['url'])}}" alt="{{picture['id']}}">
+            <div class="card-body">
+                <form>
+                    <input type="text" name="title" class="form-control" value="{{picture['title']}}" id="{{picture['id']}}">
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                {{moment(picture['timestamp']).fromNow()}}
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
+    {% endfor %}
+</div>
+<nav aria-label="Page navigation">
+    <ul class="ml-2 pagination">
+        <li class="page-item {% if not gallery['_links']['prev'] %}disabled{% endif %}"><a id="pre" class="page-link " href="{% if gallery['_links']['prev'] %}{{url_for('admin.gallery', page=gallery['_meta']['page'] - 1)}}{% else %}#{% endif %}">Previous</a></li>
+        <li class="page-item {% if not gallery['_links']['next'] %}disabled{% endif %}"><a id="next" class="page-link " href="{% if gallery['_links']['next'] %}{{url_for('admin.gallery', page=gallery['_meta']['page'] + 1)}}{% else %}#{% endif %}">Next</a></li>
+        <li class="page-item ml-auto">{{gallery["_meta"]["page"] ~ '/' ~ gallery["_meta"]["total_pages"]}} pages</li>
+    </ul>
+</nav>
+<div class="modal fade" id="addPic" tabindex="-1" role="dialog" aria-labelledby="addPicLabel" aria-hidden="true ">
+    <div class="modal-dialog" role="document ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addPicLabel">Add Picture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true ">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="dropzone" enctype="multipart/form-data" action="/api/upload", method="POST">
+                    <div class="fallback">
+                        <input type="file" name="file">
                     </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-         <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="{{ url_for('.static', filename='img/user.jpg') }}" alt="user" />
-                    <div class="el-overlay">
-                        <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="{{ url_for('.static', filename='img/user.jpg') }}"><i class="mdi mdi-magnify-plus"></i></a></li>
-                            <li class="el-item"><a class="btn default btn-outline el-link" href="javascript:void(0);"><i class="mdi mdi-link"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="el-card-content">
-                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <nav aria-label="Page navigation">
-            <ul class="ml-2 pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-    </nav>
 </div>
 {% endblock%}
 {% block plugins %}
     {{super()}}
-    <script src="{{ url_for('.static', filename='vendor/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ url_for('.static', filename='js/meg.init.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('.static', filename='vendor/jquery.magnific-popup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('.static', filename='js/meg.init.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('.static', filename='vendor/dropzone.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            'use strict';
+            var csrf_token = "{{ csrf_token() }}";
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrf_token);
+                    }
+                }
+            });
+        });
+    </script>
+    {{moment.include_moment()}}
 {% endblock%}

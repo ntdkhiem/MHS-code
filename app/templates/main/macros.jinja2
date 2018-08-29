@@ -1,0 +1,23 @@
+{% macro nav_link(endpoint, name, dropdown=none) %}
+{% if dropdown != none %}
+    {% set navigation_link %}
+        <li class="nav-item dropdown mr-5">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ name }}
+            </a>
+            <div class="dropdown-menu dropdown-dark" aria-labelledby="navbarDropdown">
+                {% for item, url in dropdown%}
+                <a class="dropdown-item animsition-link" href="{{url_for(url, track=item|lower|replace(' ', ''))}}">{{ item }}</a>
+                {% endfor %}
+            </div>
+        </li>
+    {% endset %}
+{% else %}
+    {% set navigation_link %}
+        <li class="nav-item mr-5">
+            <a class="nav-link waves-effect waves-light animsition-link" href="{{url_for(endpoint)}}">{{ name }}</a>
+        </li>
+    {% endset %}
+{% endif %}
+    {{navigation_link}}
+{% endmacro %}

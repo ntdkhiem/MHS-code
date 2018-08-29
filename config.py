@@ -19,8 +19,9 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['ppkhiemnguyen@gmail.com']
     LANGUAGES = ['en', 'es']
-    FLASK_DEBUG = int(os.environ.get('DEBUG'))
+    FLASK_DEBUG = 1
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
     REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
-    POSTS_PER_PAGE = 25
+    RESIZE_URL = os.environ.get('RESIZE_URL')
+    RESIZE_ROOT = os.environ.get('RESIZE_ROOT')
