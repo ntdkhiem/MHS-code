@@ -1,0 +1,1 @@
+{{ nav_link('main.tracks', 'Tracks', dropdown=[('Cyber Security', '.tracks'), ('Graphics', '.tracks'), ('Algorithms', '.tracks'), ('Hardware','.tracks')]) }}

@@ -1,6 +1,7 @@
 {% extends "main/layout.html" %}
 {% block CSS %}
     {{super()}}
+    <link rel="stylesheet" href="{{url_for('.static', filename='css/about.css')}}">
 {% endblock %}
 {% block TITLE %}About | MHS Computer Club{% endblock %}
     {% block HEADER %}
@@ -60,21 +61,22 @@
                     <div class="divider-new">
                         <h3 class="text-center text-uppercase font-weight-bold mr-3 ml-3 wow fadeIn text-noto" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">meet officers</h3>
                     </div>
-                    <div class="row text-center mb-5 justify-content-center" id="officers-container">
-                        {% for item in data['items'] %}
-                        <div class="col-md-3 col-sm-6 mb-md-0 mb-5 mr-5">
-                            <div class="avatar mx-auto">
-                                <img src="{{url_for('content.send_image', image_url=item['_links']['image'])}}" style="width:255px !important; height: 255px !important" alt="{{item['first_name']}}">
+                    {% if data %}
+                        <div class="row text-center mb-5 justify-content-center" id="officers-container">
+                            {% for item in data['items'] %}
+                            <div class="col-md-3 col-sm-6 mb-md-0 mb-5 mr-5">
+                                <div class="avatar mx-auto">
+                                    <img src="{{url_for('content.send_image', image_url=item['_links']['image'])}}" style="width:255px !important; height: 255px !important" alt="{{item['first_name']}}">
+                                </div>
+                                <h4 class="font-weight-bold dark-grey-text my-4">{{item['first_name'] ~ ' ' ~ item['last_name']}}</h4>
+                                <h6 class="text-uppercase grey-text mb-3"><strong>{{item['role']}}</strong></h6>
                             </div>
-                            <h4 class="font-weight-bold dark-grey-text my-4">{{item['first_name'] ~ ' ' ~ item['last_name']}}</h4>
-                            <h6 class="text-uppercase grey-text mb-3"><strong>{{item['role']}}</strong></h6>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-                    </div>
-                    {% if data['_links']['next'] %}
-                    <a href="#!" data-next="{{data['_links']['next']}}" id="load-more" type="button" class=" btn btn-outline-mhs-dark btn-md text-uppercase">load more</a>
+                        {% if data['_links']['next'] %}
+                        <a href="#!" data-next="{{data['_links']['next']}}" id="load-more" type="button" class=" btn btn-outline-mhs-dark btn-md text-uppercase">load more</a>
+                        {% endif %}
                     {% endif %}
-                    
                 </div>
             </section>
         </main>

@@ -12,6 +12,7 @@ from flask_resize import Resize
 from flask_wtf.csrf import CSRFProtect
 
 from config import Config
+from flask_socketio import SocketIO
 # from flask_babel import Babel, lazy_gettext as _l
 # from elasticsearch import Elasticsearch
 # from redis import Redis
@@ -29,6 +30,7 @@ cors = CORS()
 moment = Moment()
 resize = Resize()
 csrf = CSRFProtect()
+socketio = SocketIO()
 
 
 def create_app(config_class=Config):
@@ -43,6 +45,7 @@ def create_app(config_class=Config):
     csrf.init_app(app)
     resize.init_app(app)
     app.jinja_env.cache = {}
+    socketio.init_app(app)
     # babel.init_app(app)
     # app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
     #     if app.config['ELASTICSEARCH_URL'] else None

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.css" rel="stylesheet">
+    <link href="css/animsition.min.css" rel="stylesheet">
+    <link href="css/lightbox.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/fullcalendar.min.css" rel="stylesheet">
+    <link href="css/spinkit.css" rel="stylesheet">
+    <title>Calendar | MHS Computer Club</title>
+</head>
+<body>
+    <div class="animsition">
+        <header>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark  bg-gradient scrolling-navbar">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        
+                        <img src="img/svg/cc-icon-white.svg" alt="" class="img-fluid" height="50" width="50">
+                    </a>
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
+                        <!--Links-->
+                        <ul class="navbar-nav mx-auto smooth-scroll">
+                            <li class="nav-item mr-5">
+                                <a class="nav-link waves-effect waves-light" href="index.html">Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="nav-link waves-effect waves-light animsition-link" href="about.html" data-offset="100">About</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="nav-link waves-effect waves-light animsition-link" href="gallery.html"data-offset="100">Gallery</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="nav-link waves-effect waves-light animsition-link" href="blog.html" data-offset="100">Blog</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="nav-link waves-effect waves-light animsition-link" href="calendar.html" data-offset="100">Calendar</a>
+                            </li>
+                        </ul>
+    
+                        <!--Social Icons-->
+                        <ul class="navbar-nav nav-flex-icons">
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light">
+                                    <i class="fa fa-facebook white-text"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light">
+                                    <i class="fa fa-twitter white-text"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light">
+                                    <i class="fa fa-instagram white-text"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="view jarallax about-header" data-jarallax='{"speed": 0.2}' style="background-image: url('img/Graphics.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+                <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 mb-4 white-text text-center">
+                                <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>2018-2019 MHS Calendar</strong></h1>
+                                <hr class="hr-light my-4  w-25 wow fadeInDown" data-wow-delay="0.4s">
+                                <h5 class="text-uppercase mb-4 white-text wow fadeInDown h5-responsive" data-wow-delay="0.4s"><strong>All school event calendars can be viewed using the calendar below. To customize the calendar view, use the FILTER CALENDAR button to select or deselect a school’s calendar.</strong></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="row">
+            <div class="col-md-2">Ads</div>
+            <div id='loading'>
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+            <div class="col-md-8"> <div id="calendar" class="my-5"></div></div>
+            <div class="col-md-2">Ads</div>
+        </div>
+       
+        <footer class="page-footer font-small bg-dark pt-4">
+            <div class="container text-center text-md-left text-mont">
+                <div class="row text-center text-md-left mt-3 pb-3">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">MHS Computer Club</h6>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt veritatis ea necessitatibus adipisci. Consequatur, mollitia culpa? Optio sit at sed.</p>
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Opening times</h6>
+                        <p class="">Every wednesday from 2:30 PM at H404</p>
+                    </div>
+                    <hr class="w-100 clearfix d-md-none">
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 text-center">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Pages</h6>
+                        <p>
+                            <a href="#!">Home</a>
+                        </p>
+                        <p>
+                            <a href="#!">About</a>
+                        </p>
+                        <p>
+                            <a href="#!">Gallery</a>
+                        </p>
+                        <p>
+                            <a href="#!">Calendar</a>
+                        </p>
+                    </div>
+                    <hr class="w-100 clearfix d-md-none">
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                        <p>
+                            <i class="fa fa-home mr-3"></i> New York, NY 10012, US</p>
+                        <p>
+                            <i class="fa fa-envelope mr-3"></i> info@gmail.com</p>
+                        <p>
+                            <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+                        <p>
+                            <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+                    </div>
+                    <hr class="w-100 clearfix d-md-none">
+                    <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Gallery</h6>
+                        <div class="row " >
+                            <div class="col-md-4 mb-4">
+                                <img src="img/back.jpeg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <img src="img/back.jpeg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <img src="img/back.jpeg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-4 mb-4">
+                                <img src="img/back.jpeg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <img src="img/back.jpeg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <img src="img/back.jpeg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                        <div class="row mb-2" >
+                            <div class="col-md-4  mb-4">
+                                <img src="img/back.jpeg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-4  mb-4">
+                                <img src="img/back.jpeg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-4  mb-4">
+                                <img src="img/back.jpeg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <hr>
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-7 col-lg-8">
+                        <p class="text-center text-md-left">© 2018 Copyright:
+                            <a href="https://mdbootstrap.com/bootstrap-tutorial/">
+                            <strong> Malden High School Computer Club</strong>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-md-5 col-lg-4 ml-lg-0">
+                        <div class="text-center text-md-right">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/animsition.min.js"></script>
+    <script src="js/lightbox.min.js"></script>
+    <script src="js/mdb.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/3.8.3/superagent.min.js"></script>
+    <script src="js/fullcalendar.min.js"></script>
+    <script src="js/gcal.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            new WOW().init();
+            $('.animsition').animsition();
+            var calendarEl = document.getElementById('calendar');
+            
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+
+            header: {
+                left: 'today',
+                center: 'prev title next',
+                right: 'agendaDay,agendaWeek,month'
+            },
+            defaultView: 'month',
+            displayEventTime: true,
+            nowIndicator:true,
+            eventLimit: true,
+            themeSystem: 'bootstrap4',
+
+            googleCalendarApiKey: 'AIzaSyDpcjbgxjIb4p1pwa2PmWUM_aCI6kIXpUc',
+            
+
+            eventSources: [
+                {
+                    id:'mhs-events',
+                    googleCalendarId: 'maldenps.org_k78emke2mur8f0sqd3tenkdhfo@group.calendar.google.com',
+                    className: 'mhs-events'     
+                }, 
+                {
+                    id: 'mhscc-calendar',
+                    googleCalendarId: '3t0blm4f1u0dteu3tjlo4fsccc@group.calendar.google.com',
+                    className:'mhscc-events'
+                }
+            ],
+            eventClick: function(event) {
+                window.open(event.url, 'gcalevent', 'width=700,height=600');
+                return false;
+            },
+            loading: function(bool) {
+                document.getElementById('loading').style.display =
+                bool ? 'block' : 'none';
+            },
+
+            });
+            calendar.render();
+        });
+    </script>
+</body>
+
+</html>

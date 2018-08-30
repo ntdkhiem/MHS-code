@@ -15,15 +15,6 @@ from app.api.users import get_users
 from app.api.gallery import get_gallery
 
 
-@bp.before_app_request
-def before_request():
-    if not request.is_xhr and not current_user.is_authenticated:
-        with open('app/views.json','r') as in_file:
-            data = json.load(in_file)
-        data["total_views"] += 1
-        with open('app/views.json', 'w') as f:
-            json.dump(data, f)
-
 @bp.context_processor
 def inject_gallery():
     ctx = current_app.test_request_context('/?page=1&per_page=9')
@@ -34,12 +25,16 @@ def inject_gallery():
 
 @bp.route('/', methods=['GET'])
 def index():
-    events = json.loads(get_events(html=True).data.decode('utf-8'))
+    if get_events() != '':
+        events = json.loads(get_events(html=True).data.decode('utf-8'))
+    else:
+        events = None
     return render_template('main/index.html', events = events)
 
 @bp.route('/about', methods=['GET'])
 def about():
-    data = json.loads(get_users().data.decode('utf-8'))
+    # da = get_users()
+    data = json.loads(get_users().data)
     return render_template('main/about.html', data=data)
 
 @bp.route('/gallery', methods=['GET'])

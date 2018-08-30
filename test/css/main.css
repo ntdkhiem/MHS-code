@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette|Montserrat|Noto+Sans');
+
+
+input[type=text]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+textarea[type=text]:focus:not([readonly])
+ {
+    border-bottom: 1px solid red !important;
+    -webkit-box-shadow: 0 1px 0 0 red !important;
+    box-shadow: 0 1px 0 0 red !important;
+}
+input,
+textarea {
+    color:white !important;
+}
+
+
+.mhscc-events {
+    background-color:black !important;
+    color:white !important;
+    padding:5% !important;
+    border: none !important;
+}
+.fc.fc-bootstrap4 a {
+    padding: 1% !important;
+}
+.mhs-events {
+    background-color:red !important;
+    color:white !important;
+    padding: 5% !important;
+    border: none !important;
+}
+.about-header {
+    height:100vh;
+    width:100%;
+}
+.text-noto {
+    font-family: 'Noto Sans', sans-serif !important;
+}
+.text-cour {
+    font-family: 'Courgette', cursive !important;
+}
+.text-mont {
+    font-family: 'Montserrat', sans-serif !important;
+}
+.btn-outline-mhs {
+    border: 2px solid #fff;
+    background-color:transparent;
+    color: #fff;    
+}
+.btn-outline-mhs:hover {
+    /* border: none; */
+    background-color:white;
+    color:black;
+}
+.btn-outline-mhs-dark {
+    border: 2px solid #000;
+    background-color:transparent;
+    color: #000;    
+}
+.btn-outline-mhs-dark:hover {
+    /* border: none; */
+    background-color:#000;
+    color:white;
+}
+.mt-6 {
+    padding-top: 5rem !important;
+}
+.divider-new {
+    margin-left:25%;
+    margin-right:25%;
+}
+.align-content-center {
+    align-items: center !important;
+}
+
+.navbar {
+    font-family: 'Noto Sans', sans-serif;
+}
+.navbar-nav > li > a {
+    text-transform: uppercase;
+}
+.navbar {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+.carousel-caption {
+    top: 40%;
+}
+.top-nav-collapse {
+    background-color:white !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+.top-nav-collapse a, .top-nav-collapse i {
+    color: black !important;
+}
+nav.bg-gradient {
+    background: linear-gradient(180deg, rgba(0,0,0,0.7514356084230567) 0%, rgba(0,0,0,0.5889706224286589) 45%, rgba(0,212,255,0) 100%);
+}
+#contact-section {
+    background: url('../img/back.jpeg') center center no-repeat fixed;
+    background-size:cover;
+}
+.font-small {
+    font-size:small;
+}
+
+@include media-breakpoint-up(sm) {
+    .navbar {
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+        background-color:white !important;
+    }
+  }
